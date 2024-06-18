@@ -63,15 +63,17 @@
   }
   .bottom-left-area{
     display:flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    padding:20px;
+    padding-left:20px;
+    margin-top:30px;
+    border-top:1px solid #b3b3b3;
   }
   .bottom-right {
     width: 50%;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
   }
   
   .bottom-right-top,
@@ -93,9 +95,7 @@
     display: flex;
     align-items: center;
   }
-  .bottom-left-area{
-    border-top:1px solid #b3b3b3;
-  }
+
   .btm-right-top-val{
     color:#410082;
     font-weight: bolder;

@@ -1,6 +1,7 @@
 <template>
     <div class="radial-chart">
-        <ApexChart type="radialBar" height="390" :options="chartOptions" :series="series"></ApexChart>
+      
+        <ApexChart type="radialBar" height="300" :options="chartOptions" :series="series"></ApexChart>
     </div>
 </template>
 

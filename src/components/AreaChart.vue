@@ -1,6 +1,6 @@
 <template>
     <div class="line-chart">
-        <ApexChart type="area" height="350" :options="chartOptions" :series="series"></ApexChart>
+        <ApexChart type="area" height="100" :options="chartOptions" :series="series"></ApexChart>
     </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
         return {
             series: [{
       name: "STOCK ABC",
-      data: [30, 40, 45, 50, 49, 60, 70, 91, 125]
+      data: [30, 35]
     }],
     chartOptions: {
       chart: {
@@ -19,31 +19,50 @@ export default {
         height: 350,
         zoom: {
           enabled: false
-        }
+        },
+        toolbar: {
+          show: false // Disable the toolbar (menu bar)
+        },
+
       },
+      colors: ['#92cb64'], 
       dataLabels: {
         enabled: false
       },
       stroke: {
-        curve: 'straight'
+        curve: 'smooth'
       },
-      title: {
-        text: 'Fundamental Analysis of Stocks',
-        align: 'left'
+     
+      grid: {
+        show: false // Disable grid lines
       },
-      subtitle: {
-        text: 'Price Movements',
-        align: 'left'
-      },
+     
       xaxis: {
         type: 'datetime',
-        categories: ['2023-06-01', '2023-06-02', '2023-06-03', '2023-06-04', '2023-06-05', '2023-06-06', '2023-06-07', '2023-06-08', '2023-06-09']
+        categories: ['2023-06-01', '2023-06-02'],
+        labels: {
+          show: false
+        }
+
       },
       yaxis: {
-        opposite: true
+        opposite: true,
+        labels: {
+          show: false
+        }
       },
       legend: {
         horizontalAlign: 'left'
+      },
+      markers: {
+        size: 5,
+        colors: ['#fff'],
+        strokeColors: ['#92cb64'],
+        strokeWidth: 2,
+        hover: {
+          colors: ['#9159c7'],
+          size: 3
+        }
       }
     }
           
