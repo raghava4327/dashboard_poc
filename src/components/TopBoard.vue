@@ -3,9 +3,10 @@
     <CardComponent v-for="(card, index) in cardData" :key="index" :title="card.title.toUpperCase()" :value="card.value" :icon="card.icon" :customClass="card.class"/>
     
     <LineChart  class="line-chart"/>
+    <div class="column-donut-chart">
     <ColumnChart class="column-chart"/>
-  
     <DonutChart class="donut-chart"/>
+  </div>
   </div>
 </template>
 
@@ -62,9 +63,9 @@ export default {
   grid-template-rows: repeat(3, auto);
   gap: 10px;
   grid-template-areas: 
-    "card1 line-chart donut-chart"
-    "card2 line-chart column-chart"
-    "card3 line-chart column-chart";
+    "card1 line-chart column-donut-chart"
+    "card2 line-chart column-donut-chart"
+    "card3 line-chart column-donut-chart";
 }
 
 .card:nth-child(1) {
@@ -83,16 +84,13 @@ export default {
   grid-area: line-chart;
 }
 
-.column-chart, .donut-chart {
-  height: 100%;
-  width: 100%;
+
+
+.column-donut-chart {
+  grid-area: column-donut-chart;
+  display:flex;
+  flex-direction: column;
+  gap:20px;
 }
 
-.column-chart {
-  grid-area: column-chart;
-}
-
-.donut-chart {
-  grid-area: donut-chart;
-}
 </style>
