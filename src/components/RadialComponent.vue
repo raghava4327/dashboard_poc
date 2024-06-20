@@ -1,7 +1,7 @@
 <template>
     <div class="radial-chart">
       
-        <ApexChart type="radialBar" height="300" :options="chartOptions" :series="series"></ApexChart>
+        <ApexChart type="radialBar" height="250" :options="chartOptions" :series="series"></ApexChart>
     </div>
 </template>
 
@@ -25,7 +25,6 @@ export default {
                   margin: 5,
                   size: '30%',
                   background: 'transparent',
-                  image: undefined,
                 },
                 dataLabels: {
                   name: {
@@ -35,15 +34,7 @@ export default {
                     show: false,
                   }
                 },
-                // barLabels: {
-                //   enabled: true,
-                //   useSeriesColors: true,
-                //   margin: 8,
-                //   fontSize: '16px',
-                //   formatter: function(seriesName, opts) {
-                //     return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex]
-                //   },
-                // },
+               
               }
             },
             colors: ['#68b828', '#7c38bc', '#0e62c7', '#fcd036'],
@@ -57,15 +48,7 @@ export default {
               }
             }]
           },
-          
-          
-        
-
         }
-
-
-
-
     }
 }
 </script>

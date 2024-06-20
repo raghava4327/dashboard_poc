@@ -16,12 +16,12 @@ export default {
     chartOptions: {
       chart: {
         type: 'area',
-        height: 350,
+       
         zoom: {
           enabled: false
         },
         toolbar: {
-          show: false // Disable the toolbar (menu bar)
+          show: false 
         },
 
       },

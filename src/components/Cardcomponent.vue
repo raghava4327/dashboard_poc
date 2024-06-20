@@ -40,10 +40,12 @@ export default {
 
 <style scoped>
 .card{
-  padding:18px;
+  padding: 10px 18px;
   background-color: white;
   display:flex;
   align-items: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
   gap:20px;
   grid-column-start:1;
   grid-column-end: 2;

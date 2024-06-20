@@ -36,9 +36,9 @@
     /* margin-top: 60px; */
   }
   .container {
-    
     display: flex;
     justify-content: center;
+   
   }
   </style>
   
