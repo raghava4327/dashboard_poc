@@ -2,7 +2,7 @@
     <div class="container">
       <vue-gauge
         :refid="'type-unique'"
-        :class="'meticsGauge'"
+        :class="'metricsGauge'"
         :options="{
           needleValue: 400,
           needleColor: '#68b828',

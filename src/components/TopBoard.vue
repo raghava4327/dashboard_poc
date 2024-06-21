@@ -78,7 +78,9 @@ export default {
 .cards-container {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  /* flex: 1; */
+  /* width:30%; */
+  flex-grow: 1;
   gap: 10px;
 }
 
@@ -97,28 +99,31 @@ export default {
 .line-chart {
   /* flex: 1; */
   background-color: white;;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); */
     border-radius: 8px;
-    width:100%;
+    width:700px;
 }
 
 .column-donut-chart {
   display: flex;
-  flex-grow:1;
+ 
   flex-direction: column;
   gap: 20px;
+  flex-grow: 1;
 }
 
 .column-chart,
 .donut-chart {
-  flex: 1;
+  flex: 2;
+  flex-grow: 1;
 }
-@media screen and (max-width: 860px) {
+@media screen and (max-width: 1028px) {
   .charts-container{
     flex-wrap: wrap;
+    flex-grow:1;  
   }
   .line-chart {
-    border: 1px solid green;  
+
     width:100%;
 }
 }

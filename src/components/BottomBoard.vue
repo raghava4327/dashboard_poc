@@ -7,11 +7,11 @@
       <AreaChart />
     </div>
     <div class="bottom-left-area">
-      <p>Page Views</p>
+      <p>Visitors</p>
       <AreaChart />
     </div>
     <div class="bottom-left-area">
-      <p>Page Views</p>
+      <p>Converted Sales</p>
       <AreaChart />
     </div>
     </div>
@@ -153,6 +153,11 @@ export default {
 .bottom-left,.bottom-right{
  
   width:100%;
+}
+.title-and-gauge,.bottom-right-bottom{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 }
 </style>
