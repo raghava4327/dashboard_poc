@@ -12,9 +12,9 @@
     </div>
     
     <div class="charts-container">
-      <div class="line-chart">
+     
       <LineChart />
-      </div>
+     
       <div class="column-donut-chart">
         <ColumnChart class="column-chart"/>
         <DonutChart class="donut-chart"/>
@@ -123,7 +123,6 @@ export default {
     flex-grow:1;  
   }
   .line-chart {
-
     width:100%;
 }
 }
