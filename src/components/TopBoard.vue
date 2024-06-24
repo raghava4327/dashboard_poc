@@ -1,27 +1,18 @@
 <template>
   <div class="top-board">
     <div class="cards-container">
-      <CardComponent 
-        v-for="(card, index) in cardData" 
-        :key="index" 
-        :title="card.title.toUpperCase()" 
-        :value="card.value" 
-        :icon="card.icon" 
-        :customClass="card.class"
-      />
+      <CardComponent v-for="(card, index) in cardData" :key="index" :title="card.title.toUpperCase()"
+        :value="card.value" :icon="card.icon" :customClass="card.class" />
     </div>
-    
+
     <div class="charts-container">
-     
-      <LineChart />
-     
+      <LineChart :data="lineChartData" class="line-chart" />
       <div class="column-donut-chart">
-        <ColumnChart class="column-chart"/>
-        <DonutChart class="donut-chart"/>
+        <ColumnChart :data="columnChartData" class="column-chart" />
+        <DonutChart :data="donutChartData" class="donut-chart" />
       </div>
     </div>
   </div>
- 
 </template>
 
 <script>
@@ -31,6 +22,7 @@ import ColumnChart from "./ColumnChart.vue";
 import DonutChart from "./DonutChart.vue";
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faCloud, faCamera } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
 export default {
   name: "TopComponent",
@@ -49,21 +41,58 @@ export default {
           icon: faCloud,
           class: "green-icon"
         },
-        { 
-          title: "Users total", 
-          value: "117K", 
-          icon: faUser, 
+        {
+          title: "Users total",
+          value: "117K",
+          icon: faUser,
           class: "purple-icon"
         },
-        { 
-          title: "New Daily photos", 
-          value: "2,470", 
-          icon: faCamera, 
+        {
+          title: "New Daily photos",
+          value: "2,470",
+          icon: faCamera,
           class: "blue-icon"
         },
       ],
+      lineChartData: [],
+      columnChartData: [],
+      donutChartData: []
     };
   },
+  mounted() {
+    this.fetchLineChartData();
+    this.fetchColumnChartData();
+    this.fetchDonutChartData();
+  },
+  methods: {
+    async fetchLineChartData() {
+      try {
+        const response = await axios.get('http://localhost:3000/api/line-chart-data');
+        console.log(response.data)
+        this.lineChartData = response.data;
+      } catch (error) {
+        console.error('Error fetching line chart data:', error);
+      }
+    },
+    async fetchColumnChartData() {
+      try {
+        const response = await axios.get('http://localhost:3000/api/servertime-chart-data');
+        console.log(response.data)
+        this.columnChartData = response.data;
+      } catch (error) {
+        console.error('Error fetching column chart data:', error);
+      }
+    },
+    async fetchDonutChartData() {
+      try {
+        const response = await axios.get('http://localhost:3000/api/sales-data');
+        console.log(response.data)
+        this.donutChartData = response.data;
+      } catch (error) {
+        console.error('Error fetching donut chart data:', error);
+      }
+    }
+  }
 };
 </script>
 
@@ -78,8 +107,6 @@ export default {
 .cards-container {
   display: flex;
   flex-direction: column;
-  /* flex: 1; */
-  /* width:30%; */
   flex-grow: 1;
   gap: 10px;
 }
@@ -90,23 +117,17 @@ export default {
 
 .charts-container {
   display: flex;
-
   gap: 20px;
- 
-  /* flex-wrap:wrap; */
 }
 
 .line-chart {
-  /* flex: 1; */
-  background-color: white;;
-    /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); */
-    border-radius: 8px;
-    width:700px;
+  background-color: white;
+  border-radius: 8px;
+  width: 700px;
 }
 
 .column-donut-chart {
   display: flex;
- 
   flex-direction: column;
   gap: 20px;
   flex-grow: 1;
@@ -117,16 +138,15 @@ export default {
   flex: 2;
   flex-grow: 1;
 }
+
 @media screen and (max-width: 1028px) {
-  .charts-container{
+  .charts-container {
     flex-wrap: wrap;
-    flex-grow:1;  
+    flex-grow: 1;
   }
+
   .line-chart {
-    width:100%;
+    width: 100%;
+  }
 }
-}
-
-
-
 </style>

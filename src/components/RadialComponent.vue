@@ -18,6 +18,7 @@
               },
               plotOptions: {
                 radialBar: {
+                  
                   offsetY: 0,
                   startAngle:-135,
                   endAngle: 135,

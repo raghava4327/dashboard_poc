@@ -18,7 +18,7 @@
     <div class="flex gap-md items-center">
       <FontAwesomeIcon :class="['light', iconSize]" :icon="faSearch" />
       <div class="flex gap-sm items-center dropdown">
-        <FontAwesomeIcon :class="['light', iconSize]" :icon="faUser" />
+        <img class="profile-img" src="../assets/androgynous-avatar-non-binary-queer-person.jpg" alt="profile image" />
         <p class="light name">Raghava</p>
         <FontAwesomeIcon :class="['light', iconSize]" :icon="faCaretSquareDown" />
         <div class="dropdown-content">
@@ -84,6 +84,12 @@ export default {
   width: 25px;
   height: 15px;
 }
+.profile-img{
+  width: 25px;
+  height: 25px;
+  border-radius:50%;
+}
+
 
 .iconSize {
   width: 25px;

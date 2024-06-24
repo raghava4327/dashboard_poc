@@ -1,57 +1,96 @@
 <template>
     <div class="donut-chart">
-    <div>
-   <p class="val">320,45</p>
-   <p class="val-title">AVG OF SALES</p>
-</div>
-        <ApexChart width=150 type="donut" :options="chartOptions" :series="series"></ApexChart>
+      <div>
+        <p class="val">{{ avgSales }}</p>
+        <p class="val-title">AVG OF SALES</p>
+      </div>
+      <ApexChart width="150" type="donut" :options="chartOptions" :series="series"></ApexChart>
     </div>
-</template>
-
-<script>
-export default {
- name: 'donutChart',
- data: function () {
-  return {
-   chartOptions: {
-    legend: {
-          show: false // Hide legend
+  </template>
+  
+  <script>
+  export default {
+    name: 'DonutChart',
+    props: {
+      data: {
+        type: Array,
+        required: true
+      }
+    },
+    data() {
+      return {
+        chartOptions: {
+          legend: {
+            show: false // Hide legend
+          },
+          dataLabels: {
+            enabled: false // Disable data labels (percentage labels)
+          },
+          colors: [] // This will be updated based on the values
         },
-        dataLabels: {
-          enabled: false // Disable data labels (percentage labels)
+        series: [], // Initialize with an empty array
+        avgSales: 0 // Initialize average sales
+      };
+    },
+    watch: {
+      data: {
+        handler(newData) {
+          this.updateChart(newData);
         },
-        colors: ['#9edb8b', '#2c691a', '#3a7727', '#94cf83', '#5e9b4c']
-   },
-   series: [44, 55, 41, 17, 15]
-
-}}}
-</script>
-
-<style scoped>
-.donut-chart {
-    grid-column: 3 / 3;
+        deep: true,
+        immediate: true
+      }
+    },
+    methods: {
+      updateChart(data) {
+        const salesData = data.map(item => item.no_of_sales);
+        const totalSales = salesData.reduce((acc, val) => acc + val, 0);
+        const avgSales = (totalSales / salesData.length).toFixed(2); // Calculate the average
+  
+        this.series = salesData;
+        this.avgSales = avgSales;
+        this.chartOptions.colors = this.getColorsBasedOnValues(salesData)
+        
+      },
+      getColorsBasedOnValues(values) {
+        // Define your color logic here
+        return values.map(value => {
+          if (value >=350) {
+            return '#2c691a'; // Dark green for high values
+          } else if (value > 300) {
+            return '#77bc2d'; // Light green for medium values
+          } else {
+            return '#94cf83'; // Lighter green for low values
+          }
+        });
+      }
+    }
+  };
+  </script>
+  
+  <style scoped>
+  .donut-chart {
     display: flex;
     justify-content: space-between;
-    padding-top:20px;
-    padding-left:20px;
-    padding-right:20px;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
     letter-spacing: 0.5px;
     gap: 20px;
-    flex-grow:1;
+    flex-grow: 1;
     background-color: white;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px
-    
-}
- .val{
-    color:#77bc2d;
+    border-radius: 8px;
+  }
+  .val {
+    color: #77bc2d;
     font-weight: bolder;
-    font-size:18px;
+    font-size: 18px;
     text-align: left;
-    
-}
-.val-title{
-    color:#b9adbf;
-    font-size:8px;
-}
-</style>
+  }
+  .val-title {
+    color: #b9adbf;
+    font-size: 8px;
+  }
+  </style>
+  

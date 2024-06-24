@@ -3,17 +3,7 @@
       <vue-gauge
         :refid="'type-unique'"
         :class="'metricsGauge'"
-        :options="{
-          needleValue: 400,
-          needleColor: '#68b828',
-          arcDelimiters: [25, 50,75],
-          arcColors: [ '#68b828','#68b828','#68b828','#d5080f'],
-          arcOverEffect: true,
-          arcLabels:['25','50','75'],
-          chartWidth: 250,
-          rangeLabel: ['0', '100'],
-          hasNeedle: true,
-        }"
+        :options="gaugeOptions"
       >
       </vue-gauge>
     </div>
@@ -23,6 +13,27 @@
   import VueGauge from "vue-gauge";
   export default {
     components: { VueGauge },
+    props: {
+    value: {
+      type: Number,
+      required: true
+    }
+  },
+    computed:{
+      gaugeOptions(){
+        return {
+          needleValue: this.value,
+          needleColor: '#68b828',
+          arcDelimiters: [25, 50,75],
+          arcColors: [ '#68b828','#68b828','#68b828','#d5080f'],
+          arcOverEffect: true,
+          arcLabels:['25','50','75'],
+          chartWidth: 250,
+          rangeLabel: ['0', '100'],
+          hasNeedle: true,
+        }
+      }
+    }
   };
   </script>
   
